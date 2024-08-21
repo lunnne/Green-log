@@ -7,7 +7,7 @@ function App() {
   return (
     <>
       <h1>😍</h1>
-      <h1>YOUNA + JIN</h1>
+      <h1 className='text-3xl font-bold underline'>YOUNA + JIN</h1>
       <p>FIRST PROJECT </p>
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>count is {count}</button>
