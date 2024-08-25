@@ -3,9 +3,9 @@ import PostsList from './PostsList';
 
 export default function Home() {
   return (
-    <div className='flex'>
+    <div className="flex min-h-screen py-10">
       <Navbar />
-      <PostsList/>
+      <PostsList />
     </div>
   );
 }
