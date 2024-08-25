@@ -7,13 +7,13 @@ export default {
         'primary-header': 'Playfair Display',
         'primary-body': 'Montserrat',
       },
-    },
-    colors: {
-      'primary-green': '#4caf50',
-      'bg-gray': '#f1f1e7',
-      'primary-brown': '#85875a',
-      'light-green': '#f1fcf1',
-      'dark-green': '#3d4a3d'
+      colors: {
+        'primary-green': '#4caf50',
+        'bg-gray': '#f1f1e7',
+        'primary-brown': '#85875a',
+        'light-green': '#f4fbf3',
+        'dark-green': '#003400'
+      },
     },
   },
   plugins: [],

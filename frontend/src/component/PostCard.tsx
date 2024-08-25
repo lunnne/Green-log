@@ -11,14 +11,14 @@ interface PostCardProps {
 
 const PostCard: React.FC<PostCardProps> = ({ posts }) => {
   return (
-    <div className="mb-10">
+    <div className="mb-10 text-dark-green flex flex-col items-center">
       {posts.map((post) => (
-        <div key={post.id} className="bg-gray-800 p-4 rounded-lg mb-6">
+        <div key={post.id} className="bg-white p-4 rounded-lg mb-10">
           <div className="flex items-center mb-4">
             <img src="https://via.placeholder.com/40" className="w-10 h-10 rounded-full" alt="Profile Picture" />
             <div className="ml-3 text-left">
               <span className="font-semibold">{post.username}</span>
-              <p className="text-sm text-gray-400">Dubai, United Arab Emirates • 12m</p>
+              <p className="text-sm text-slate-600">Dubai, United Arab Emirates • 12m</p>
             </div>
           </div>
           <img src={post.imageUrl} alt={post.username} className="postimg w-full h-auto rounded-lg mb-4" />

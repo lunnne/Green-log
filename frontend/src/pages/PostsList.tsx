@@ -17,7 +17,7 @@ export default function PostsList() {
   }, []);
 
   return (
-    <div className='flex-1 p-10 flex justify-center overflow-y-auto'>
+    <div>
       <PostCard posts={posts} />
     </div>
   );
