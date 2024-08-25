@@ -7,6 +7,7 @@ import PostsList from './pages/PostsList.tsx';
 import Errorpage from './pages/ErrorPage.tsx';
 import PostDetail from './pages/PostDetail.tsx';
 import Home from './pages/Home.tsx';
+import AddPost from './pages/AddPost.tsx';
 
 const router = createBrowserRouter([
   {
@@ -17,6 +18,7 @@ const router = createBrowserRouter([
       { index: true, path: '/', element: <Home /> },
       { path: 'posts', element: <PostsList /> },
       { path: 'posts/:postId', element: <PostDetail /> },
+      { path: 'create', element: <AddPost /> },
     ],
   },
 ]);
