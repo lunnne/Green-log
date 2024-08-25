@@ -1,10 +1,11 @@
 import Navbar from '../component/Navbar';
+import PostsList from './PostsList';
 
 export default function Home() {
   return (
-    <div className='grid grid-cols-6'>
+    <div className="flex min-h-screen py-10">
       <Navbar />
-      <div className='cols-span-5'>home</div>
+      <PostsList />
     </div>
   );
 }
