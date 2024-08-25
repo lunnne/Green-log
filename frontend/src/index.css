@@ -24,3 +24,8 @@ body {
   height: 100vh;
   background-color: #f1f1e7;
 }
+
+.postimg {
+  width: 500px;
+  height: 600px;
+}
