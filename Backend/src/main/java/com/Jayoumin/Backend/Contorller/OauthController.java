@@ -7,6 +7,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class OauthController {
     @GetMapping("/sign")
     public String signUp(){
-        return "aboutUser/sign";
+        return "sign";
     }
 }
