@@ -13,7 +13,7 @@ export default function SignUp() {
     password: '',
   });
   return (
-    <section className="flex flex-col items-center justify-center">
+    <section className="flex flex-col items-center justify-center min-h-screen">
       <div className="shadow-md rounded-lg p-8 w-full max-w-md">
         <h2 className="text-2xl font-semibold text-center text-dark-green mb-6">Sign up</h2>
         <form action="">
@@ -40,7 +40,7 @@ export default function SignUp() {
               id="name"
               value={formData.name}
               className="w-full px-3 py-2 border rounded-lg"
-              placeholder="Enter your name"
+              placeholder="Enter your email"
             />
           </div>
 
