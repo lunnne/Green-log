@@ -2,10 +2,14 @@ package com.Jayoumin.Backend.Entity;
 
 import com.Jayoumin.Backend.DTO.UserDTO;
 import jakarta.persistence.*;
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
 import java.util.Date;
 
+@EntityListeners(AuditingEntityListener.class)
 @Entity
 @Table(name = "user")
 public class UserEntity {   // table 역할
@@ -22,6 +26,7 @@ public class UserEntity {   // table 역할
     @Column
     private String nickname;
 
+    @CreatedDate
     @Column
     private LocalDateTime create_at;
 
