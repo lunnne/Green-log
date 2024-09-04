@@ -8,7 +8,8 @@ import Errorpage from './pages/ErrorPage.tsx';
 import PostDetail from './pages/PostDetail.tsx';
 import Home from './pages/Home.tsx';
 import AddPost from './pages/AddPost.tsx';
-import SignUp from './features/auth/Signup.tsx';
+import SignUp from './features/auth/SignUp.tsx';
+import LogIn from './features/auth/LogIn.tsx';
 
 const router = createBrowserRouter([
   {
@@ -21,6 +22,7 @@ const router = createBrowserRouter([
       { path: 'posts/:postId', element: <PostDetail /> },
       { path: 'create', element: <AddPost /> },
       { path: 'signup', element: <SignUp /> },
+      { path: 'login', element: <LogIn /> },
     ],
   },
 ]);
