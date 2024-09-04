@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { useState } from 'react';
 
 interface SignUpFormData {
@@ -13,14 +14,21 @@ export default function SignUp() {
     password: '',
   });
 
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
-    console.log(e.target.value);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
+    try {
+      const response = await axios.post('http://localhost:5173/api/auth/signup', formData);
+      console.log('sign up successful:', response.data);
+    } catch (error) {
+      console.error('sign upfailed:', error);
+      setErrorMessage('sign up failed. Please try again');
+    }
   };
 
   return (
@@ -74,6 +82,7 @@ export default function SignUp() {
               placeholder="Enter your password"
             />
           </div>
+          {errorMessage && <p className="text-red-500 mb-4">{errorMessage}</p>}
           <button type="submit" className="w-full bg-dark-green text-white font-semibold py-2 rounded-lg hover:bg-green-700">
             Sign Up
           </button>
