@@ -33,7 +33,6 @@ tasks.named('test') {
 }
 
 def frontendDir = "$projectDir/../frontend"
-
 sourceSets {
 	main {
 		resources { srcDirs = ["$projectDir/src/main/resources"]
@@ -65,16 +64,10 @@ task buildReact(type: Exec) {
 	} else {
 		commandLine "npm", "run-script", "build"
 	}
-
-	outputs.dir "$frontendDir/dist"
 }
 
 task copyReactBuildFiles(type: Copy) {
 	dependsOn "buildReact"
 	from "$frontendDir/dist"
 	into "$projectDir/src/main/resources/static"
-
-	// 입력 디렉토리와 출력 디렉토리를 설정하여 변경 감지
-	inputs.dir "$frontendDir/dist"
-	outputs.dir "$projectDir/src/main/resources/static"
 }
