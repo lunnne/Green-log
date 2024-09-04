@@ -38,7 +38,7 @@ export default function SignUp() {
               type="text"
               name="name"
               id="name"
-              value={formData.name}
+              value={formData.email}
               className="w-full px-3 py-2 border rounded-lg"
               placeholder="Enter your email"
             />
