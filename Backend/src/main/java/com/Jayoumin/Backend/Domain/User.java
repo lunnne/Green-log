@@ -1,10 +1,7 @@
 package com.Jayoumin.Backend.Domain;
 
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.security.core.GrantedAuthority;
@@ -16,17 +13,19 @@ import java.util.Collection;
 import java.util.List;
 
 
+
 @EntityListeners(AuditingEntityListener.class)
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Table(name = "users")
+@Data
 public class User implements UserDetails {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "user_id")
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    // @Column(name = "id", updatable = false)
+    private String id;
 
     @Column(name = "email", nullable = false, updatable = false)
     private String email;
