@@ -1,24 +1,27 @@
 package com.Jayoumin.Backend.Service;
-
-import com.Jayoumin.Backend.DTO.UserDTO;
-import com.Jayoumin.Backend.Entity.UserEntity;
+import com.Jayoumin.Backend.DTO.AddUserRequest;
+import com.Jayoumin.Backend.Domain.User;
 import com.Jayoumin.Backend.Repository.UserRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-
 import java.time.LocalDateTime;
 import java.util.Date;
 
-@Service    // 스프링 빈
+@Service
+@RequiredArgsConstructor
 public class UserService {
+
     private final UserRepository userRepository;
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    public UserService(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
-
-    public void signUp(UserDTO userDTO){
-        UserEntity userEntity =
-                UserEntity.toUserEntity(userDTO);
-        userRepository.save(userEntity);
+    public Long save(AddUserRequest dto){
+        return userRepository.save(User.builder()
+                .email(dto.getEmail())
+                .password(dto.getPassword())
+                .nickname(dto.getNickname())
+                .create_at(dto.getCreate_at())
+                .build()
+        ).getId();
     }
 }

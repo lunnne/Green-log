@@ -22,7 +22,7 @@ public class WebSecurityConfig {
     @Bean
     public WebSecurityCustomizer configure(){
         return  (web)-> web.ignoring()
-                .requestMatchers(toH2Console())
+//                .requestMatchers(toH2Console())
                 .requestMatchers("/static/**");
     }
 
@@ -32,7 +32,7 @@ public class WebSecurityConfig {
         return http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests((request) -> request
-                        .requestMatchers("/login","/signup","/user").permitAll()
+                        .requestMatchers("/login","/signup","/").permitAll()
                         .anyRequest().authenticated())
                 .formLogin((login)-> login
                         .loginPage("/login")

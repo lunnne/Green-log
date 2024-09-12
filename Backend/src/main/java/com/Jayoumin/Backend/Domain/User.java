@@ -43,11 +43,11 @@ public class User implements UserDetails {
 
 
     @Builder
-    public User(String email, String password, String nickname, String auth){
+    public User(String email, String password, String nickname, LocalDateTime create_at ,String auth){
         this.email =email;
         this.password=password;
-//        this.nickname = nickname;
-//        this.create_at=
+        this.nickname = nickname;
+        this.create_at=create_at;
     }
 
     @Override
