@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { useState } from 'react';
+import { GoogleLogin } from '@react-oauth/google';
 
 interface SignUpFormData {
   email: string;
@@ -28,6 +29,17 @@ export default function SignUp() {
     } catch (error) {
       console.error('sign upfailed:', error);
       setErrorMessage('sign up failed. Please try again');
+    }
+  };
+
+  const handleGoogleSuccess = async (response: any) => {
+    try {
+      const res = await axios.post('http://localhost:5173', {
+        token: response.credential,
+      });
+      console.log('Google sign-up successful', res.data);
+    } catch (error) {
+      console.error('Google sign-up failed:', error);
     }
   };
 
@@ -86,6 +98,8 @@ export default function SignUp() {
             Sign Up
           </button>
         </form>
+        <div className="text-center mt-4">or</div>
+        <GoogleLogin onSuccess={handleGoogleSuccess} onError={() => console.log('Google login failed')} />
       </div>
     </section>
   );
