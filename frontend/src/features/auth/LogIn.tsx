@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { useState } from 'react';
 import { GoogleLogin } from '@react-oauth/google';
+import { logIn } from '../../api/auth';
 
 interface LogInFormData {
   username: string;
@@ -22,8 +23,9 @@ export default function LogIn() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5173/api/auth/login', formData);
-      console.log('log in succesfully:', response.data);
+      const { username, password } = formData;
+      const result = await logIn(username, password);
+      console.log('log in succesfully:', result);
     } catch (error) {
       console.error('log in failed:', error);
       setErrorMessage('log in failed, please try again');
