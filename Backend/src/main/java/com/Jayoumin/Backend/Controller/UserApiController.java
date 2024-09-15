@@ -14,7 +14,13 @@ public class UserApiController {
 
     @PostMapping("/api/auth/signup")
     public String signup(@RequestBody AddUserRequest request){
-        System.out.println("Received password: "+ request.getPassword());
+        userService.save(request);
+        return "redirect:/";
+    }
+
+
+    @PostMapping("/api/auth/login")
+    public String login(@RequestBody AddUserRequest request){
         userService.save(request);
         return "redirect:/";
     }
