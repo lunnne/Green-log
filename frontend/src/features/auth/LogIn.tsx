@@ -1,5 +1,7 @@
 import axios from 'axios';
 import { useState } from 'react';
+import { GoogleLogin } from '@react-oauth/google';
+import { logIn } from '../../api/auth';
 
 interface LogInFormData {
   username: string;
@@ -21,13 +23,26 @@ export default function LogIn() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5173/api/auth/login', formData);
-      console.log('log in succesfully:', response.data);
+      const { username, password } = formData;
+      const result = await logIn(username, password);
+      console.log('log in succesfully:', result);
     } catch (error) {
       console.error('log in failed:', error);
       setErrorMessage('log in failed, please try again');
     }
   };
+
+  const handleGoogleSuccess = async (response: any) => {
+    try {
+      const res = await axios.post('http://localhost:5173', {
+        token: response.credential,
+      });
+      console.log('Google login successful:', res.data);
+    } catch (error) {
+      console.error('Google login failed:', error);
+    }
+  };
+
   return (
     <section className="flex flex-col items-center justify-center min-h-screen">
       <div className="shadow-md rounded-lg p-8 w-full max-w-md">
@@ -66,6 +81,8 @@ export default function LogIn() {
             Log In
           </button>
         </form>
+        <div className="text-center mt-4">or</div>
+        <GoogleLogin onSuccess={handleGoogleSuccess} onError={() => console.log('Google login failed')} />
       </div>
     </section>
   );
