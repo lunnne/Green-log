@@ -33,7 +33,7 @@ public class User implements UserDetails {
     @Column(name = "nickname", nullable = false)
     private String nickname;
 
-    @Column(name = "password")
+    @Column(name = "password", nullable = false)
     private String password;
 
     @CreatedDate
