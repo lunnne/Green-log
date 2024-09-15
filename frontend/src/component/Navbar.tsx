@@ -20,12 +20,12 @@ export default function Navbar() {
             <IoCreate />
             <span>Create</span>
           </Link>
-          <Link to="#profile" className="flex items-center space-x-5 hover:text-primary-brown">
+          <Link to="/signup" className="flex items-center space-x-5 hover:text-primary-brown">
             <CgProfile />
             <span>Profile</span>
           </Link>
         </nav>
       </div>
     </div>
-  );
+  )
 }
