@@ -7,6 +7,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -23,5 +24,9 @@ public class UserService {
                 .create_at(dto.getCreate_at())
                 .build()
         ).getId();
+    }
+
+    public Optional<User> findByNickname(AddUserRequest dto){
+        return userRepository.findByNickname(dto.getNickname());
     }
 }

@@ -21,7 +21,7 @@ public class UserApiController {
 
     @PostMapping("/api/auth/login")
     public String login(@RequestBody AddUserRequest request){
-        userService.save(request);
-        return "redirect:/";
+        userService.findByNickname(request);
+        return "redirect:/index.html";
     }
 }

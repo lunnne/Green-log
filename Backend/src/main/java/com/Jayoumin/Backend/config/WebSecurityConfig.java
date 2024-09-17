@@ -4,6 +4,7 @@ import com.Jayoumin.Backend.Service.UserDetailService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
@@ -16,7 +17,7 @@ import static org.springframework.boot.autoconfigure.security.servlet.PathReques
 @Configuration
 public class WebSecurityConfig {
 
-    private UserDetailService userService;
+    private final UserDetailService userService;
 
     // 스프링 시큐리티 기능 비활성화: 정적 리소스
     @Bean
@@ -31,7 +32,7 @@ public class WebSecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
         return http
                 .csrf(AbstractHttpConfigurer::disable)
-                .authorizeHttpRequests((request) -> request
+                .authorizeRequests((request) -> request
 //                        .requestMatchers("/login","/signup","/").permitAll()
                         .requestMatchers("/**").permitAll()
                         .anyRequest().authenticated())
@@ -43,15 +44,15 @@ public class WebSecurityConfig {
                         .invalidateHttpSession(true))
                 .build();
     }
-    // 인증 관리자 설정
-//    @Bean
-//    public DaoAuthenticationProvider daoAuthenticationProvider()throws Exception{
-//        DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
-//        daoAuthenticationProvider.setUserDetailsService(userService);
-//        daoAuthenticationProvider.setPasswordEncoder(bCryptPasswordEncoder());
-//
-//        return daoAuthenticationProvider;
-//    }
+    @Bean
+    public DaoAuthenticationProvider daoAuthenticationProvider() throws Exception {
+        DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
+
+        daoAuthenticationProvider.setUserDetailsService(userService);
+        daoAuthenticationProvider.setPasswordEncoder(bCryptPasswordEncoder());
+
+        return daoAuthenticationProvider;
+    }
 
 
     @Bean
