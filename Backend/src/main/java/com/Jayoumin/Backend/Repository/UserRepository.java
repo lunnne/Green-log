@@ -7,5 +7,5 @@ import java.util.Optional;
 
 @Repository // 첫번쨰 인자: 어떤 entity?, 두 번째: pk 타입
 public interface UserRepository extends JpaRepository<User, String> {
-    Optional<User> findByEmail(String email);
+    Optional<User> findByNickname(String nickname);
 }

@@ -24,13 +24,12 @@ public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    // @Column(name = "id", updatable = false)
     private String id;
 
-    @Column(name = "email", nullable = false, updatable = false)
+    @Column(name = "email", updatable = false)
     private String email;
 
-    @Column(name = "nickname", nullable = false)
+    @Column(name = "nickname", nullable = false, unique = true)
     private String nickname;
 
     @Column(name = "password", nullable = false)
